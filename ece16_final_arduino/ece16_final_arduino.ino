@@ -1,10 +1,5 @@
-int sampleTime = 0; // Time of last sample (in Sampling tab)
-// Acceleration values recorded from the readAccelSensor() function
-
 bool sending;
- 
-
-void setup() {
+ void setup() {
   setupCommunication();
   setupDisplay();
   setupMotor();
