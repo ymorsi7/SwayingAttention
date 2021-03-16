@@ -83,10 +83,11 @@ p = ppg[60:] #taking out more data points at the start for collecting data.
 t = t_array[60:]-t_array[10] #time for data
 
 ax.set_xlabel("time(s)") #plot setup
-ax.set_ylabel("Red Channel Value") #plot setup
+ax.set_ylabel("Eye-Aspect-ratio") #plot setup
 datt = np.vstack((t*1000,p)).T #Data being stored
 
 #np.savetxt(filename, datt ,delimiter=",") # line for saving data file
+
 ax.plot(t, p)    #plotting
 comms.send_message("sleep")  # stop sending data
 comms.close()
