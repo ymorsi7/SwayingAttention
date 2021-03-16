@@ -20,12 +20,12 @@ def eye_aspect_ratio(eye):
 	return ratio
 comms = Communication("COM4", 115200) #connecting to Arduino
 comms.clear()                   # just in case any junk is in the pipes
-comms.send_message("wearable")  # begin sending data
+comms.send_message("live")  # begin sending data
 thresh = 0.265 #eye-aspect-ratio threshold value for Drowsiness detection 
 plt.style.use('seaborn-whitegrid') #graph for data collection
 ppg = np.array([])  #eye-ratio data collection array
 t_array = np.array([]) #time collection array for data
-frame_check = 20 #Amount of frames of conescutive frames needed for detected Drowsiness  
+frame_check = 20 #Amount of conescutive frames needed for detected Drowsiness  
 detect = dlib.get_frontal_face_detector() #using c++ files from dlib for facial detection
 predict = dlib.shape_predictor(".\shape_predictor_68_face_landmarks.dat")# dlib c++ file that detects facial parts like eyes, nose, lip etc.
 
@@ -43,8 +43,8 @@ while True:
 		shape = face_utils.shape_to_np(shape)#converting to NumPy Array
 		leftEye = shape[lStart:lEnd] #Numpy Array for left eye.
 		rightEye = shape[rStart:rEnd] #Numpy Array for right eye.
-		leftEAR = eye_aspect_ratio(leftEye) #Eye aspect ration of left eye
-		rightEAR = eye_aspect_ratio(rightEye) #Eye aspect ration of right eye
+		leftEAR = eye_aspect_ratio(leftEye) #Eye aspect ratio of left eye
+		rightEAR = eye_aspect_ratio(rightEye) #Eye aspect ratio of right eye
 		ratio = (leftEAR + rightEAR) / 2.0 #Average of left and right eye ratio
 		leftEyeHull = cv2.convexHull(leftEye) #image for eye traceing on input frame
 		rightEyeHull = cv2.convexHull(rightEye)#image for eye traceing on input frame
@@ -69,7 +69,7 @@ while True:
 	#resize = cv2.resize(cap,(960,540))
 	cv2.imshow("Frame",frame)          #showes frame input with eye traceing overlay/ displayed Drowsiness detection when required
 	key = cv2.waitKey(1) & 0xFF
-	if key == ord("q"):                #Code for exciting program
+	if key == ord("q"):                #Code for exiting program
 		break
 p = ppg[3:] #remove first few points because of auto-exposure    
 filename = "Ratio_normal_.csv" #filename for storing data
