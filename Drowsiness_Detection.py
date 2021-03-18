@@ -72,7 +72,7 @@ while True:
 	if key == ord("q"):                #Code for exiting program
 		break
 p = ppg[3:] #remove first few points because of auto-exposure    
-filename = "Ratio_normal_.csv" #filename for storing data
+filename = "Yusuf_sunglass5.csv" #filename for storing data
 
 fig = plt.figure() #setting up plot
 ax = plt.axes() #plot setup    
@@ -89,7 +89,8 @@ datt = np.vstack((t*1000,p)).T #Data being stored
 #np.savetxt(filename, datt ,delimiter=",") # line for saving data file
 
 ax.plot(t, p)    #plotting
+comms.send_message("off")
 comms.send_message("sleep")  # stop sending data
 comms.close()
 cv2.destroyAllWindows()
-cap.stop()
+#cap.stop()
