@@ -75,7 +75,7 @@ while True:
 	if key == ord("q"):                #Code for exiting program
 		break
 p = ppg[3:] #remove first few points because of auto-exposure    
-filename = "eddie_5.csv" #filename for storing data
+filename = "yusufv2_5.csv" #filename for storing data
 
 fig = plt.figure() #setting up plot
 ax = plt.axes() #plot setup    
