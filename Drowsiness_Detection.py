@@ -16,6 +16,9 @@ def eye_aspect_ratio(eye):
 	A = distance.euclidean(eye[1], eye[5]) #vertical distance (top and bottom of eye)
 	B = distance.euclidean(eye[2], eye[4]) #vertical distance (top and bottom of eye)
 	C = distance.euclidean(eye[0], eye[3]) #Horizonatal distance (top and bottom of eye)
+	#print("A+b/2")
+	#print((A+B)/2)
+    
 	ratio = (A + B) / (2.0 * C) #ratio of vertical to horizontal
 	return ratio
 comms = Communication("COM4", 115200) #connecting to Arduino
@@ -72,7 +75,7 @@ while True:
 	if key == ord("q"):                #Code for exiting program
 		break
 p = ppg[3:] #remove first few points because of auto-exposure    
-filename = "Yusuf_sunglass5.csv" #filename for storing data
+filename = "eddie_5.csv" #filename for storing data
 
 fig = plt.figure() #setting up plot
 ax = plt.axes() #plot setup    
@@ -86,7 +89,7 @@ ax.set_xlabel("time(s)") #plot setup
 ax.set_ylabel("Eye-Aspect-ratio") #plot setup
 datt = np.vstack((t*1000,p)).T #Data being stored
 
-#np.savetxt(filename, datt ,delimiter=",") # line for saving data file
+np.savetxt(filename, datt ,delimiter=",") # line for saving data file
 
 ax.plot(t, p)    #plotting
 comms.send_message("off")
